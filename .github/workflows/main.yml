@@ -58,4 +58,5 @@ jobs:
           port: 22
           script: |
             sudo docker rm -f kh_was
+            sudo docker rmi -f koreanstandardtime/app0114
             sudo docker run -d --name kh_was -p 8000:8080 koreanstandardtime/app0114
