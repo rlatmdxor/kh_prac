@@ -1,0 +1,13 @@
+name: kh_actionnnnnn
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job01hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print Hello
+        run: echo "Hello~~~"
