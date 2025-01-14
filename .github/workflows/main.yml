@@ -44,3 +44,18 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push ${{ secrets.DOCKER_HUB_ID }}/app0114:latest
+
+  Connect-to-EC2-and-Run-Container:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: excuting remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_IP }}
+          key: ${{ secrets.EC2_KEY }}
+          username: ubuntu
+          port: 22
+          script: |
+            sudo docker rm -f kh_was
+            sudo docker run -d --name kh_was -p 8000:8080 kimgugbee/app0114
